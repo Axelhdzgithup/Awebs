@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Alarmate</title>
+    
+    <style>
+       
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="">Alarms</a>
+    </nav>
+
+  
+    <div id="lunita">
+        <img id="Clock-image" src="img/Clock.png" alt="sky">
+    </div>
+  
+    <div class="clock">
+        <h1>
+            ALARMS
+        </h1>
+        <h3>
+            Set your alarms
+        </h3>
+        <div class="time" id="time">
+            <!-- Aquí se mostrará la hora actual -->
+        </div>
+        <div class="input-row">
+            <div class="input-field">
+                <label for="alarmDate"></label>
+                <input type="date" id="alarmDate" class="alarm-input" min="">
+            </div>
+            <div class="input-field">
+                <label for="alarmTime"></label>
+                <input type="time" id="alarmTime" class="alarm-input">
+            </div>
+            <button id="setAlarm">Set Alarm</button>
+        </div>
+        <div class="alarms" id="alarms"></div>
+    </div>
+
+    <script>
+        // Obtener la hora actual
+        function updateTime() {
+            var currentDate = new Date();
+            var hours = currentDate.getHours();
+            var minutes = currentDate.getMinutes();
+            var seconds = currentDate.getSeconds();
+
+            // Agregar ceros delante si es necesario para mantener el formato hh:mm:ss
+            hours = (hours < 10 ? "0" : "") + hours;
+            minutes = (minutes < 10 ? "0" : "") + minutes;
+            seconds = (seconds < 10 ? "0" : "") + seconds;
+
+            // Obtener el elemento con la clase "time" y actualizar su contenido
+            var timeElement = document.getElementById("time");
+            timeElement.textContent = hours + ":" + minutes + ":" + seconds;
+        }
+
+        // Llamar a la función updateTime inicialmente y luego cada segundo (1000 milisegundos)
+        updateTime(); // Llamar inicialmente para evitar el retraso de un segundo en la visualización
+        setInterval(updateTime, 1000);
+
+        // Obtener el body del documento
+        var body = document.body;
+
+        // Cambiar el color de fondo dependiendo de la hora del día
+        var currentHour = new Date().getHours();
+        if (currentHour >= 6 && currentHour < 18) {
+            body.style.backgroundImage = "img/FondoMNAN.png"; // Día: lightblue
+        } else if (currentHour >= 18 && currentHour < 20) {
+            body.style.backgroundColor = "orange"; // Tarde: orange
+        } else {
+            body.style.backgroundColor = "black"; // Noche: black
+        }
+    </script>
+
+</body>
+</html>
